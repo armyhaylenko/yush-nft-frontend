@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import FirstPage from "./components/FirstPage/FirstPage";
 import SecondPage from './components/SecondPage/SecondPage';
 import Footer from './components/Footer/Footer';
+import RunningText from "./components/RunningText/RunningText";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,6 +20,7 @@ return (
     <div className={classes.root}>
         <Header/>
         <FirstPage/>
+        <RunningText/>
         <SecondPage/>
         <Footer/>
     </div>
