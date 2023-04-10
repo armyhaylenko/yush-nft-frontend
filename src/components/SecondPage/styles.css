@@ -1,0 +1,55 @@
+/* .text {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 62px;
+    color: #554D4D;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 462px;
+    height: 186px;
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+section.accordion-section {
+    border-radius: 0!important;
+    width: 100%;
+    height: 576px;
+    background: rgba(255, 255, 255, 0.5);
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+    color: #554D4D;
+}
+
+.accordion {
+    border-radius: 0 !important;
+}
+
+.question {
+    font-family: 'Nunito', sans-serif !important;
+    font-weight: 700;
+    font-size: 20px !important; 
+    line-height: 62px;
+    color: #554D4D !important;
+}
+
+.accordion-wrapper {
+    margin-left: 537px;
+    margin-right: 84px;
+}
+
+.picture {
+   background-image: url("/public/assets/abstract2.svg");
+    width: 509px;
+    height: 611px;
+    position: absolute;
+    top: 0;
+    /* margin-left: 180px; */
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
