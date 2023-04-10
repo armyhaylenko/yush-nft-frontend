@@ -1,10 +1,12 @@
 footer {
     height: 283px;
-background: #04000A;
-backdrop-filter: blur(3px);
+    background: #04000A;
+    backdrop-filter: blur(3px);
 }
+
 .footer-container {
     margin: 50px 100px;
+    position: relative;
 }
 
 .parent {
@@ -14,21 +16,91 @@ backdrop-filter: blur(3px);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     position: relative;
-    }
-    
-    .div1 { grid-area: 1 / 1 / 2 / 2;
-        background: url("/public/assets/female.svg") no-repeat;
-        background-size: 197px 281px;
-        /* width: 281px;
+}
+
+.div1 {
+    grid-area: 1 / 1 / 2 / 2;
+    background: url("/public/assets/female.svg") no-repeat center;
+    background-size: 197px 281px;
+    /* width: 281px;
         height: 197px; */
-        height: 283px;
-    border: none;}
-    .div2 { grid-area: 1 / 2 / 2 / 3; }
+    height: 283px;
+    border: none;
+}
 
-        h2.socials {
-            
-        }
+.div2 {
+    grid-area: 1 / 2 / 2 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-    .div3 { grid-area: 1 / 3 / 2 / 4; }
+h2.socials-title {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+}
+.socials {
+    display: flex;
+    flex-direction: column;
+}
 
- 
+.socials a {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+text-decoration: none;
+    color: #FFFFFF;
+    transition: .3 ease all;
+}
+.footer-container p {
+    font-family: 'Nunito';
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #FFFFFF;
+    margin: 0;
+    font-size: 12px;
+    line-height: 20px;
+}
+.socials a:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.socials a:hover {
+    color: #979696;
+    transition: .3 ease all;
+}
+
+.div3 {
+    grid-area: 1 / 3 / 2 / 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.div3 input {
+    font-family: 'Nunito';
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    font-size: 14px;
+    line-height: 22px;
+    margin-bottom: 20px;
+}
+
+label {
+    font-family: 'Nunito';
+    color: #FFFFFF;
+    font-size: 14px;
+    line-height: 22px;
+}
