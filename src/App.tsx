@@ -7,6 +7,7 @@ import Footer from './components/Footer/Footer';
 import RunningText from "./components/RunningText/RunningText";
 import Creators from './components/Creators/Creators';
 import MyCounter from './components/Counter/MyCounter';
+import ThirdPage from "./components/ThirdPage/ThirdPage";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,6 +25,7 @@ return (
         <FirstPage/>
         <RunningText/>
         <SecondPage/>
+        <ThirdPage/>
         <MyCounter/>
         <Creators/>
         <Footer/>
