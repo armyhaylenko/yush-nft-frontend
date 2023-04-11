@@ -31,7 +31,7 @@ return (
                     </Button>
                 ))}
             </Box>
-            <Button variant="outlined" sx={{ my: 2,
+            <Button className='help' variant="outlined" sx={{ my: 2,
                 color: '#FC6327',
                 display: 'block',
                 fontFamily: 'Nunito, sans-serif',

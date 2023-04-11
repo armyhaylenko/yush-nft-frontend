@@ -22,3 +22,8 @@
 .header {
 display: flex;
 }
+
+button.help:hover{
+    color: #8f3816;
+    border: solid 1px #8f3816;
+}

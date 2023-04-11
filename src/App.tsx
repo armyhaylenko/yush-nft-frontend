@@ -5,6 +5,8 @@ import FirstPage from "./components/FirstPage/FirstPage";
 import SecondPage from './components/SecondPage/SecondPage';
 import Footer from './components/Footer/Footer';
 import RunningText from "./components/RunningText/RunningText";
+import Creators from './components/Creators/Creators';
+import MyCounter from './components/Counter/MyCounter';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,6 +24,8 @@ return (
         <FirstPage/>
         <RunningText/>
         <SecondPage/>
+        <MyCounter/>
+        <Creators/>
         <Footer/>
     </div>
 );

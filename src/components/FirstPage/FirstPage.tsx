@@ -11,7 +11,7 @@ return (
              Next Biggest NFT in the World
              of Cryptocurrency
          </div>
-         <Button variant="outlined" sx={{ my: 2,
+         <Button className='wallet' variant="outlined" sx={{ my: 2,
              color: '#FFF',
              display: 'block',
              fontFamily: 'Nunito, sans-serif',
@@ -26,7 +26,7 @@ return (
              height:'48px',
 
          }}>Connect Wallet</Button>
-         <Button variant="outlined" sx={{ my: 2,
+         <Button className='help' variant="outlined" sx={{ my: 2,
              color: '#FC6327',
              display: 'block',
              fontFamily: 'Nunito, sans-serif',
