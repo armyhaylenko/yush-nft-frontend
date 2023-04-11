@@ -38,11 +38,28 @@
 
 .creators-wrap .row1 .img-creator {
     background: url("/public/assets/patron1.jpg") no-repeat center;
+    background-size: 117%;
+    background-position-y: -28px;
     width: 244px;
     height: 244px;
     border-radius: 10px;
 }
 
+.creators-wrap .row1 .img-creator:last-child {
+    background: url("/public/assets/pes.jpg") no-repeat center;
+    background-size: 110%;
+}
+
+.creators-wrap .row1 .img-creator:first-child {
+    background: url("/public/assets/ozzy.jpg") no-repeat center;
+    background-size: 110%;
+}
+
+.creators-wrap .row2 .img-creator:last-child {
+    background: url("/public/assets/patron3.jpg") no-repeat center;
+    background-size: 100%;
+    background-position-y: -43px;
+}
 .creators-wrap .row1 .img-creator:not(:last-child),
 .creators-wrap .row2 .img-creator:not(:last-child) {
     margin-right: 10px;
