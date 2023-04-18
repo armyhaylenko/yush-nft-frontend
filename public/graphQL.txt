@@ -1,0 +1,137 @@
+"collection_data_id_hash": "d1e534aee3f87d3521be0da10c3930be0c954175e783565601f1f3f1be6a50a0"
+"collection_name": "Kateryna Yushchenko NFTs"
+
+creator_address(resourse): "0x3c42361676ed7b681c3531ecf3b5221caf8e3db75dc04a5669afa54f98287309"
+owner_address(charity_organization): "0x0bdd921fa9b94f0621cd5370b4f54f1f675cc31aeb6f6a69900ac54c0fae4982"
+
+query ToBeSoldOfCollection(
+  $_resource: String = "0x3c42361676ed7b681c3531ecf3b5221caf8e3db75dc04a5669afa54f98287309",
+  $_main: String = "0x0bdd921fa9b94f0621cd5370b4f54f1f675cc31aeb6f6a69900ac54c0fae4982",
+  $_collection: String = "d1e534aee3f87d3521be0da10c3930be0c954175e783565601f1f3f1be6a50a0",
+  $limit: Int = 10,
+  $offset: Int = 0) {
+
+  current_token_ownerships_aggregate(
+    where: {
+      owner_address: {_eq: $_main},
+      creator_address: {_eq: $_resource},
+      collection_data_id_hash: {_eq: $_collection}
+    }
+  ) {
+    aggregate {
+      count
+    }
+  }
+  current_token_ownerships(
+    where: {
+      owner_address: {_eq: $_main},
+      creator_address: {_eq: $_resource},
+      collection_data_id_hash: {_eq: $_collection}
+    }
+    order_by: {last_transaction_version: desc}
+    limit: $limit
+    offset: $offset
+  ) {
+    name
+    owner_address
+    token_data_id_hash
+    amount
+    property_version
+  }
+}
+
+query SoldOfCollection(
+  $_resource: String = "0x3c42361676ed7b681c3531ecf3b5221caf8e3db75dc04a5669afa54f98287309",
+  $_main: String = "0x0bdd921fa9b94f0621cd5370b4f54f1f675cc31aeb6f6a69900ac54c0fae4982",
+  $_collection: String = "d1e534aee3f87d3521be0da10c3930be0c954175e783565601f1f3f1be6a50a0",
+  $limit: Int = 10,
+  $offset: Int = 0) {
+
+  current_token_ownerships_aggregate(
+    where: {
+      owner_address: {_neq: $_main},
+      creator_address: {_eq: $_resource},
+      collection_data_id_hash: {_eq: $_collection}
+    }
+  ) {
+    aggregate {
+      count
+    }
+  }
+  current_token_ownerships(
+    where: {
+      owner_address: {_neq: $_main},
+      creator_address: {_eq: $_resource},
+      collection_data_id_hash: {_eq: $_collection}
+    }
+    order_by: {last_transaction_version: desc}
+    limit: $limit
+    offset: $offset
+  ) {
+    name
+    owner_address
+    token_data_id_hash
+    amount
+    property_version
+  }
+}
+
+query TokensOfCollectionByWallet(
+  $_resource: String = "0x3c42361676ed7b681c3531ecf3b5221caf8e3db75dc04a5669afa54f98287309",
+  $_collection: String = "d1e534aee3f87d3521be0da10c3930be0c954175e783565601f1f3f1be6a50a0",
+  $limit: Int = 10,
+  $offset: Int = 0,
+  $_wallet: String = "0x0bdd921fa9b94f0621cd5370b4f54f1f675cc31aeb6f6a69900ac54c0fae4982") {
+  
+  current_token_ownerships_aggregate(
+    where: {
+      owner_address: {_eq: $_wallet},
+      creator_address: {_eq: $_resource},
+      collection_data_id_hash: {_eq: $_collection}
+    }
+  ) {
+    aggregate {
+      count
+    }
+  }
+  
+  current_token_ownerships(
+    where: {
+      owner_address: {_eq: $_wallet},
+      creator_address: {_eq: $_resource},
+      collection_data_id_hash: {_eq: $_collection}
+    }
+    limit: $limit
+    offset: $offset
+    order_by: {last_transaction_version: desc}
+  ) {
+    name
+    collection_data_id_hash
+    token_data_id_hash
+    amount
+    property_version
+  }
+}
+
+
+query MintedCount($_resource: String = "0x3c42361676ed7b681c3531ecf3b5221caf8e3db75dc04a5669afa54f98287309") {
+  token_activities_aggregate(where: {creator_address: {_eq: $_resource}, transfer_type: {_eq: "0x3::token::MintTokenEvent"}}) {
+    aggregate {
+      count
+    }
+  }
+}
+
+
+query Collections($_resource: String = "0x3c42361676ed7b681c3531ecf3b5221caf8e3db75dc04a5669afa54f98287309", $limit: Int = 10, $offset: Int = 0) {
+  current_collection_datas(
+    where: {creator_address: {_eq: $_resource}}
+    order_by: {last_transaction_timestamp: desc}
+    limit: $limit
+    offset: $offset
+  ) {
+    collection_data_id_hash
+    collection_name
+    description
+  }
+}
