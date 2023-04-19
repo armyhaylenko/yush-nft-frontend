@@ -1,34 +1,9 @@
 import React from 'react'
 import Button from "@mui/material/Button";
 import './styles.css'
-import Web3 from "web3";
+import {connectWallet} from "../Header/Header";
 
-declare global {
-    interface Window {
-        martian:any;
-    }
-}
-
-let martian = window.martian;
 export default function FirstPage() {
-
-    async function connectWallet() {
-        if (window.martian) {
-            try {
-                await window.martian.connect();
-                await window.martian.account()
-                await window.martian.isConnected()
-                //console.log(window.martian.address);
-                /*     const transactions = await window.martian.getAccountResources('0x3c42361676ed7b681c3531ecf3b5221caf8e3db75dc04a5669afa54f98287309');
-                     //console.log(transactions);*/
-
-            } catch (error) {
-                console.error('Error connecting to Martian Wallet:', error);
-            }
-        } else {
-            alert('Please install a web3-enabled browser like MetaMask or Martian Wallet to interact with this app.');
-        }}
-
     return (
         <div className='container'>
             <div className='fstColumn'>

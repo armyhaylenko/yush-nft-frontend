@@ -1,90 +1,46 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './styles.css'
+import {Carousel} from "react-responsive-carousel";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+
+
+const getArrayUris = async () => {
+    const transactions = await window.martian.getAccountResources('0x3c42361676ed7b681c3531ecf3b5221caf8e3db75dc04a5669afa54f98287309');
+    const arrUris = transactions[3].data.available_media_uris;
+    return arrUris
+}
+
+function hex2a(hexx:any) {
+    var hex = hexx.toString();//force conversion
+    var str = '';
+    for (var i = 0; i < hex.length; i += 2)
+        str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+    return str;
+}
 
 export default function ThirdPage() {
-return (
-<div className="carouselContainer">
-    <section className="carousel" aria-label="Gallery">
-        <ol className="carousel__viewport">
-            <li id="carousel__slide1"
-                className="carousel__slide">
-                <div className="carousel__snapper">
-                    <a href="#carousel__slide4"
-                       className="carousel__prev">Go to last slide</a>
-                    <a href="#carousel__slide2"
-                       className="carousel__next">Go to next slide</a>
-                </div>
-                <div className="cardTitle">Token example #1</div>
-                <div className="image"/>
-                <div className="priceContainer">
-                    <div className="btcPrice">500BTC</div>
-                    <div className="dollarPrice">$3000</div>
-                </div>
-            </li>
-            <li id="carousel__slide2"
-                className="carousel__slide">
-                <div className="carousel__snapper"></div>
-                <a href="#carousel__slide1"
-                   className="carousel__prev">Go to previous slide</a>
-                <a href="#carousel__slide3"
-                   className="carousel__next">Go to next slide</a>
-                <div className="cardTitle">Token example #1</div>
-                <div className="image"/>
-                <div className="priceContainer">
-                    <div className="btcPrice">500BTC</div>
-                    <div className="dollarPrice">$3000</div>
-                </div>
-            </li>
-            <li id="carousel__slide3"
-                className="carousel__slide">
-                <div className="carousel__snapper"></div>
-                <a href="#carousel__slide2"
-                   className="carousel__prev">Go to previous slide</a>
-                <a href="#carousel__slide4"
-                   className="carousel__next">Go to next slide</a>
-                <div className="cardTitle">Token example #1</div>
-                <div className="image"/>
-                <div className="priceContainer">
-                    <div className="btcPrice">500BTC</div>
-                    <div className="dollarPrice">$3000</div>
-                </div>
-            </li>
-            <li id="carousel__slide4"
-                className="carousel__slide">
-                <div className="carousel__snapper"></div>
-                <a href="#carousel__slide3"
-                   className="carousel__prev">Go to previous slide</a>
-                <a href="#carousel__slide1"
-                   className="carousel__next">Go to first slide</a>
-                <div className="cardTitle">Token example #1</div>
-                <div className="image"/>
-                <div className="priceContainer">
-                    <div className="btcPrice">500BTC</div>
-                    <div className="dollarPrice">$3000</div>
-                </div>
-            </li>
-        </ol>
-        <aside className="carousel__navigation">
-            <ol className="carousel__navigation-list">
-                <li className="carousel__navigation-item">
-                    <a href="#carousel__slide1"
-                       className="carousel__navigation-button">Go to slide 1</a>
-                </li>
-                <li className="carousel__navigation-item">
-                    <a href="#carousel__slide2"
-                       className="carousel__navigation-button">Go to slide 2</a>
-                </li>
-                <li className="carousel__navigation-item">
-                    <a href="#carousel__slide3"
-                       className="carousel__navigation-button">Go to slide 3</a>
-                </li>
-                <li className="carousel__navigation-item">
-                    <a href="#carousel__slide4"
-                       className="carousel__navigation-button">Go to slide 4</a>
-                </li>
-            </ol>
-        </aside>
-    </section>
-</div>
-);
+    const [uris, setUris] = useState([]);
+
+    useEffect(() => {
+        const fetchUris = async () => {
+            const result = await getArrayUris();
+            setUris(result);
+        };
+
+        fetchUris();
+    }, []);
+
+
+    return (
+        <div className='carousel_container'>
+            <Carousel showThumbs={false}  infiniteLoop={true} showStatus={false} showIndicators={false} swipeable={true} axis={"horizontal"}>
+                {uris.map((uri, index) => (
+                    <div key={index}>
+                        <img style={{height: "400px", objectFit: "cover"}} src={hex2a(uri)} alt={`Slide ${index + 1}`} />
+                        <p>0.1 APT</p>
+                    </div>
+                ))}
+            </Carousel>
+        </div>
+    );
 }
