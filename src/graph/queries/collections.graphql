@@ -1,0 +1,12 @@
+query Collections($_resource: String = "0x3c42361676ed7b681c3531ecf3b5221caf8e3db75dc04a5669afa54f98287309", $limit: Int = 10, $offset: Int = 0) {
+  current_collection_datas(
+    where: {creator_address: {_eq: $_resource}}
+    order_by: {last_transaction_timestamp: desc}
+    limit: $limit
+    offset: $offset
+  ) {
+    collection_data_id_hash
+    collection_name
+    description
+  }
+}
