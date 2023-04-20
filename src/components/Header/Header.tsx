@@ -24,7 +24,7 @@ export async function connectWallet() {
     }
 }
 export default function Header() {
-    const pages = ['Discover', 'About', 'Artists',  'Help'];
+    const pages = ['Discover', 'About', 'NFTs',  'Creators'];
 
     return (
         <div className="header">
@@ -37,6 +37,7 @@ export default function Header() {
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex',
                     justifyContent: 'center' }}}>
                 {pages.map((page) => (
+                    <a href={"#" + page} style={{textDecoration: "none"}}>
                     <Button
                         key={page}
                         sx={{ my: 2,
@@ -50,6 +51,7 @@ export default function Header() {
                     >
                         {page}
                     </Button>
+                    </a>
                 ))}
             </Box>
             <Button onClick={connectWallet} className='help' variant="outlined" sx={{ my: 2,

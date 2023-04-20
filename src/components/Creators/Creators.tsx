@@ -4,7 +4,7 @@ import './styles.css'
 export default function Creators() {
 
 return (
- <section className='section-creators'>
+ <section id="Creators" className='section-creators'>
     <div className="text">
         <h1>Meet Our Creators</h1>
         <p>We believe artists need to be compensated for every sale,not just the first one!</p>

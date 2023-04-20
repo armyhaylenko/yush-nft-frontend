@@ -15,7 +15,7 @@ export default function SecondPage() {
       };
 return (
 
- <section className='accordion-section'>
+ <section id="About" className='accordion-section'>
      <div className='picture'>
          
      </div>

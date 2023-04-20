@@ -5,7 +5,7 @@ import {connectWallet} from "../Header/Header";
 
 export default function FirstPage() {
     return (
-        <div className='container'>
+        <div id="Discover" className='container'>
             <div className='fstColumn'>
                 <div className='text'>
                     Next Biggest NFT in the World
@@ -26,6 +26,7 @@ export default function FirstPage() {
                     height:'48px',
 
                 }}>Connect Wallet</Button>
+                <a href="mailto:test@example.com?subject=Question" style={{textDecoration: "none"}}>
                 <Button className='help' variant="outlined" sx={{ my: 2,
                     color: '#FC6327',
                     display: 'block',
@@ -39,7 +40,7 @@ export default function FirstPage() {
                     width:'210px',
                     height:'48px',
 
-                }}>Need help?</Button>
+                }}>Need help?</Button></a>
             </div>
             <div className='sndColumn'>
             </div>
