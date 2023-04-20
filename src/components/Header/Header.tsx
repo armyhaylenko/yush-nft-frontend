@@ -3,16 +3,37 @@ import './styles.css'
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
+declare global {
+    interface Window {
+        martian:any;
+    }
+}
+
+export async function connectWallet() {
+    if (window.martian) {
+        try {
+            await window.martian.connect();
+            await window.martian.account()
+            await window.martian.isConnected()
+
+        } catch (error) {
+            console.error('Error connecting to Martian Wallet:', error);
+        }
+    } else {
+        alert('Please install a web3-enabled browser like MetaMask or Martian Wallet to interact with this app.');
+    }
+}
 export default function Header() {
     const pages = ['Discover', 'About', 'Artists',  'Help'];
-return (
-    <div className="header">
-        <div className="logo">
-            <div className="female"/>
-            <div className="name">
-                YUSH
+
+    return (
+        <div className="header">
+            <div className="logo">
+                <div className="female"/>
+                <div className="name">
+                    YUSH
+                </div>
             </div>
-        </div>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex',
                     justifyContent: 'center' }}}>
                 {pages.map((page) => (
@@ -31,7 +52,7 @@ return (
                     </Button>
                 ))}
             </Box>
-            <Button className='help' variant="outlined" sx={{ my: 2,
+            <Button onClick={connectWallet} className='help' variant="outlined" sx={{ my: 2,
                 color: '#FC6327',
                 display: 'block',
                 fontFamily: 'Nunito, sans-serif',
@@ -43,6 +64,6 @@ return (
                 marginRight:'167px',
 
             }}>Connect Wallet</Button>
-    </div>
-);
+        </div>
+    );
 }
