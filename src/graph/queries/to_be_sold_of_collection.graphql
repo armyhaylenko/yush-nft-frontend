@@ -1,0 +1,35 @@
+query ToBeSoldOfCollection(
+    $_resource: String = "0x3c42361676ed7b681c3531ecf3b5221caf8e3db75dc04a5669afa54f98287309",
+    $_main: String = "0x0bdd921fa9b94f0621cd5370b4f54f1f675cc31aeb6f6a69900ac54c0fae4982",
+    $collection: String = "d1e534aee3f87d3521be0da10c3930be0c954175e783565601f1f3f1be6a50a0",
+    $limit: Int = 10,
+    $offset: Int = 0) {
+
+    current_token_ownerships_aggregate(
+        where: {
+            owner_address: {_eq: $_main},
+            creator_address: {_eq: $_resource},
+            collection_data_id_hash: {_eq: $collection}
+        }
+    ) {
+        aggregate {
+            count
+        }
+    }
+    current_token_ownerships(
+        where: {
+            owner_address: {_eq: $_main},
+            creator_address: {_eq: $_resource},
+            collection_data_id_hash: {_eq: $collection}
+        }
+        order_by: {last_transaction_version: desc}
+        limit: $limit
+        offset: $offset
+    ) {
+        name
+        owner_address
+        token_data_id_hash
+        amount
+        property_version
+    }
+}
