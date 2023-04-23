@@ -3,6 +3,8 @@ import Button from "@mui/material/Button";
 import './styles.css'
 import {connectWallet} from "../Header/Header";
 import {toBeSoldOf} from "../../graph/GraphService";
+import { eventEmitter } from '../Counter/eventEmitter';
+
 
 
 
@@ -29,7 +31,10 @@ export default function FirstPage() {
             const txnHashResult = await window.martian.signAndSubmitTransaction(transaction);
             setTxnHash(txnHashResult);
             setRerender(true);
-            console.log(toBeSoldOf)
+// Emit an event after a successful transaction
+            eventEmitter.emit('nftMinted');
+
+            console.log(toBeSoldOf);
         } catch (error) {
             console.error('Transaction failed:', error);
         }
