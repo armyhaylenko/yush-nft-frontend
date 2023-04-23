@@ -13,7 +13,7 @@ const ENDPOINT = 'https://indexer-testnet.staging.gcp.aptosdev.com/v1/graphql';
  * @param {object} [variables] - Optional variables to be used in the query
  * @returns {Promise<object>} - A promise that resolves with the query result or rejects with an error
  */
-async function executeQuery(query: string, variables?: Record<string, any>): Promise<any> {
+export async function executeQuery(query: string, variables?: Record<string, any>): Promise<any> {
     try {
         return await request(ENDPOINT, query, variables);
     } catch (error) {
@@ -44,7 +44,7 @@ interface Data {
         "current_token_ownerships": NFT[]
     }
 }
-export async function toBeSoldOf(collection: string = DEFAULT_COLLECTION,
+ export async function toBeSoldOf(collection: string = DEFAULT_COLLECTION,
                                  limit: number = 10,
                                  offset: number = 0): Promise<Data> {
     const query = `query ToBeSoldOfCollection(

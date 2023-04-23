@@ -27,3 +27,33 @@
     line-height: 62px;
     color: #554D4D !important;
 }
+
+.carousel .control-next.control-arrow:before{
+    position: absolute;
+    top: 7px;
+    top: 7px;
+    left: 7px;
+}
+.carousel .control-prev.control-arrow:before {
+    position: absolute;
+    top: 7px;
+    left: 5px;
+}
+
+ .carousel.carousel-slider .control-arrow {
+    background-color: black !important;
+    height: 30px;
+    top: 50%!important;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 26px;
+    bottom: 0;
+    margin-top: 0;
+    padding: 5px;
+    margin-top: 13%;
+    border-radius: 50%;
+    width: 30px;
+}
+.carousel.carousel-slider {
+      margin: 0 auto !important;
+  }

@@ -1,9 +1,39 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Button from "@mui/material/Button";
 import './styles.css'
 import {connectWallet} from "../Header/Header";
+import {toBeSoldOf} from "../../graph/GraphService";
+
+
+
 
 export default function FirstPage() {
+    const [txnHash, setTxnHash] = useState(null);
+    const [rerender, setRerender] = useState(false);
+
+    useEffect(() => {
+        if (rerender) {
+            setRerender(false);
+        }
+    }, [rerender]);
+    const buyNFT = async () => {
+        try {
+            const response = await window.martian.connect();
+            const sender = response.address;
+            const payload = {
+                function: "0x3c42361676ed7b681c3531ecf3b5221caf8e3db75dc04a5669afa54f98287309::ykl_nft::mint_nft",
+                type_arguments: [],
+                arguments: [],
+            };
+            const transaction = await window.martian.generateTransaction(sender, payload);
+            const txnHashResult = await window.martian.signAndSubmitTransaction(transaction);
+            setTxnHash(txnHashResult);
+            setRerender(true);
+            console.log(toBeSoldOf)
+        } catch (error) {
+            console.error('Transaction failed:', error);
+        }
+    };
     return (
         <div id="Discover" className='container'>
             <div className='fstColumn'>
@@ -11,7 +41,7 @@ export default function FirstPage() {
                     Next Biggest NFT in the World
                     of Cryptocurrency
                 </div>
-                <Button onClick={connectWallet} className='wallet' variant="outlined" sx={{ my: 2,
+                <Button onClick={buyNFT} className='wallet' variant="outlined" sx={{ my: 2,
                     color: '#FFF',
                     display: 'block',
                     fontFamily: 'Nunito, sans-serif',
@@ -25,7 +55,8 @@ export default function FirstPage() {
                     width:'210px',
                     height:'48px',
 
-                }}>Connect Wallet</Button>
+                }}>Buy</Button>
+                {txnHash && <p>Transaction Hash: {txnHash}</p>}
                 <a href="mailto:test@example.com?subject=Question" style={{textDecoration: "none"}}>
                 <Button className='help' variant="outlined" sx={{ my: 2,
                     color: '#FC6327',

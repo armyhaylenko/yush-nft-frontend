@@ -33,7 +33,7 @@ export default function ThirdPage() {
 
     return (
         <div id="NFTs" className='carousel_container'>
-            <Carousel showThumbs={false}  infiniteLoop={true} showStatus={false} showIndicators={false} swipeable={true} axis={"horizontal"}>
+            <Carousel width={"70%"} showThumbs={false}  infiniteLoop={true} showStatus={false} showIndicators={false} swipeable={true} axis={"horizontal"}>
                 {uris.map((uri, index) => (
                     <div key={index}>
                         <img style={{height: "400px", objectFit: "cover"}} src={hex2a(uri)} alt={`Slide ${index + 1}`} />
